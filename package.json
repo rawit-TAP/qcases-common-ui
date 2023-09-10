@@ -1,6 +1,6 @@
 {
   "name": "@qcases/common-ui",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "Common lib for using between phone case projects",
   "main": "lib/index.js",
   "scripts": {
@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/duytung95nb/qcases-common-ui#readme",
   "peerDependencies": {
-    "@qcases/common": "^1.0.0",
+    "@qcases/common": "2.2.0",
     "lodash": "^4.17.21",
     "mdb-react-ui-kit": "^4.1.0",
     "react": "^18.1.0",
@@ -36,6 +36,8 @@
   },
   "types": "lib/index.d.ts",
   "dependencies": {
+    "dayjs": "^1.11.9",
+    "jwt-decode": "^3.1.2",
     "react-resize-detector": "^7.1.2"
   }
 }

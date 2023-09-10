@@ -14,4 +14,8 @@ Common utils and ui component for building frontend
 
 NOTE: need to run build before publish
 
+# Install to test in different repo
+- Copy absolute path of root folder
+- Install to consuming repo using: `npm i <absolutePath>`
+Example: `npm i /Users/john/Desktop/Projects/qcases-common-ui`
 
