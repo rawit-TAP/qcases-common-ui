@@ -38,7 +38,7 @@ export class TokenService {
         catch(e) {
             console.error('Getting token failed');
             this.accessTokenValue = '';
-            return this.accessTokenValue;
+            throw e;
         }
     }
 
