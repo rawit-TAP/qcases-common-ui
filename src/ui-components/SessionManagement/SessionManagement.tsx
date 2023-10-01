@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { Options, sessionCheckIframeId } from './SessionManagement.types';
 
 export const SessionManagement: React.FC<React.PropsWithChildren<{
@@ -11,7 +11,7 @@ export const SessionManagement: React.FC<React.PropsWithChildren<{
 }) => {
     const checkSessionIntervalInMs = !options.checkSessionInterval ? 5 * 1000
         : options.checkSessionInterval;
-    React.useEffect(() => {
+    useEffect(() => {
         const checkSession = () => {
             console.log('Checking session', sessionCheckIframeId);
             const win = (document.getElementById(sessionCheckIframeId) as HTMLIFrameElement).contentWindow;
@@ -30,7 +30,7 @@ export const SessionManagement: React.FC<React.PropsWithChildren<{
             if (e.data === 'changed') {
                 clearInterval(timerId);
                 // then take the actions below...
-                // Emit session changed event, require refetch token
+                // Emit session changed event
                 sessionChanged(e);
             }
         }
@@ -41,9 +41,12 @@ export const SessionManagement: React.FC<React.PropsWithChildren<{
         }
     }, [sessionChanged]);
     return (
-        <React.Fragment>
-            <iframe src={options.idpOrigin + options.checkSessionIframePath} id={sessionCheckIframeId}></iframe>
+        <Fragment>
+            <iframe src={options.idpOrigin + options.checkSessionIframePath} id={sessionCheckIframeId}
+                style={{
+                    display: 'none'
+                }}></iframe>
             {children}
-        </React.Fragment>
+        </Fragment>
     );
 }
