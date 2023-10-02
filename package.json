@@ -1,11 +1,11 @@
 {
   "name": "@qcases/common-ui",
-  "version": "2.3.1",
+  "version": "3.0.0-alpha",
   "description": "Common lib for using between phone case projects",
   "main": "lib/index.js",
   "scripts": {
     "test": "test",
-    "build": "tsc && node-sass src/styles/index.scss lib/styles/main.css"
+    "build": "rm -rf lib && tsc && node-sass src/styles/index.scss lib/styles/main.css"
   },
   "repository": {
     "type": "git",
