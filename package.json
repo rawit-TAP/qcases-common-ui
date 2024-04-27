@@ -1,6 +1,6 @@
 {
   "name": "@qcases/common-ui",
-  "version": "3.0.0-alpha",
+  "version": "4.0.0",
   "description": "Common lib for using between phone case projects",
   "main": "lib/index.js",
   "scripts": {
