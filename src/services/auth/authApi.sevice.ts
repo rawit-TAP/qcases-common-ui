@@ -1,6 +1,6 @@
-import { AccessTokenResponse, LogoutResponse } from "../../domain/models/auth.model";
+import { TokenResponse } from "../../domain/models/auth.model";
 
 export interface IAuthApi {
-    getAccessToken(): Promise<AccessTokenResponse>;
-    logout(accessToken: string): Promise<LogoutResponse>;
+  getAccessTokenByRefreshToken(refreshToken: string): Promise<TokenResponse>;
+  getTokensByCodeExchange(code: string): Promise<TokenResponse>;
 }

@@ -1,10 +1,5 @@
-
-export type AccessTokenResponse = {
-    jwt: string;
-    sessionId: string;
-}
-
-export type LogoutResponse = {
-    sessionId: string;
-    postLogoutUrl: string;
-}
+export type TokenResponse = {
+  accessToken: string;
+  refreshToken: string | null;
+  sessionId: string;
+};
