@@ -7,8 +7,9 @@ import {
   SESSION_ID_KEY,
 } from "../../domain/constants/storage";
 import { DecodedAccessToken } from "@qcases/common";
-import { TokenResponse } from "../../domain/models/auth.model";
+import { AuthErrorCode, TokenResponse } from "../../domain/models/auth.model";
 import { IAuthApi } from "./authApi.sevice";
+import { CustomError } from "../../domain/models/error.model";
 
 export type TokenServiceOptions = {
   tokenApi: IAuthApi;
@@ -55,7 +56,6 @@ export class AuthService {
     if (this.isAccessTokenValid()) {
       return this.accessTokenValue;
     }
-    // First time login, need call exchange code to token
     if (!this.isRefreshTokenValid()) {
       try {
         const tokenResponse = await this.getTokensByCodeExchange();
@@ -64,7 +64,10 @@ export class AuthService {
         this.setSessionId(tokenResponse.sessionId);
         return tokenResponse.accessToken;
       } catch (e) {
-        throw new Error("Get tokens first time after login failed");
+        throw new CustomError(
+          AuthErrorCode.REAUTHENTICATE_REQUIRED,
+          "Refresh token empty or invalid, cannot get access token and refresh token by code exchange"
+        );
       }
     }
     // Subsequence login
@@ -83,7 +86,10 @@ export class AuthService {
     } catch (e) {
       console.error("Getting token failed test");
       this.accessTokenValue = "";
-      throw e;
+      throw new CustomError(
+        AuthErrorCode.GET_ACCESS_TOKEN_FAILED,
+        "Fetch access token by refresh token failed, refetch required"
+      );
     }
   };
 

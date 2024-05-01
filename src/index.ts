@@ -7,6 +7,7 @@ export * from "./utils/form.utils";
 export * from "./domain/constants/auth";
 export * from "./domain/constants/storage";
 export * from "./domain/models/auth.model";
+export * from "./domain/models/error.model";
 export * from "./services/auth/auth.service";
 export * from "./services/auth/authApi.sevice";
 export * from "./services/auth/authInit.service";
